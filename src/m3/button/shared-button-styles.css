@@ -82,11 +82,6 @@
   --_background-color: var(--md-sys-color-secondary-container);
   --_text-color: var(--md-sys-color-on-secondary-container);
 }
-:host([variant='elevated']) {
-  --_background-color: var(--md-sys-color-surface-container-low);
-  --_text-color: var(--_color);
-  box-shadow: var(--md-sys-elevation-shadow-1);
-}
 :host([variant='outlined']) {
   --_background-color: transparent;
   --_text-color: var(--md-sys-color-on-surface-variant);

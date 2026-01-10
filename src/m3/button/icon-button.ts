@@ -1,13 +1,13 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import { Button } from '../base/button.js';
+import { Button } from '../../base/button.js';
 
-import './focus-ring.js';
-import './ripple.js';
+import '../focus-ring.js';
+import '../ripple.js';
 
-import { targetStyles } from './target-styles.css.js';
-import { buttonGenericStyles } from './button-generic-styles.css.js';
+import { targetStyles } from '../target-styles.css.js';
+import { sharedButtonStyles } from './shared-button-styles.css.js';
 import { iconButtonStyles } from './icon-button-styles.css.js';
 
 /**
@@ -22,7 +22,7 @@ export class M3IconButton extends Button {
   static override styles = [
     ...super.styles,
     targetStyles,
-    buttonGenericStyles,
+    sharedButtonStyles,
     iconButtonStyles,
   ];
   override render() {

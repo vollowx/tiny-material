@@ -13,7 +13,7 @@
   );
   height: var(--_h);
   width: var(--_h);
-  transition: border-radius 280ms var(--md-sys-motion-easing-emphasized);
+  transition: border-radius var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
 }
 
 :host([variant='text']) {

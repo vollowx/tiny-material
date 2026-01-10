@@ -1,16 +1,16 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import { Switch } from '../base/switch.js';
-import { internals } from '../base/mixins/internals-attached.js';
+import { Switch } from '../../base/switch.js';
+import { internals } from '../../base/mixins/internals-attached.js';
 
-import './focus-ring.js';
-import './ripple.js';
+import '../focus-ring.js';
+import '../ripple.js';
 
-import { buttonGenericStyles } from './button-generic-styles.css.js';
+import { targetStyles } from '../target-styles.css.js';
+import { sharedButtonStyles } from './shared-button-styles.css.js';
 import { iconButtonStyles } from './icon-button-styles.css.js';
 import { iconButtonToggleStyles } from './icon-button-toggle-styles.css.js';
-import { targetStyles } from './target-styles.css.js';
 
 /**
  * @tag md-icon-button-toggle
@@ -25,7 +25,7 @@ export class M3IconButtonToggle extends Switch {
   static override styles = [
     ...super.styles,
     targetStyles,
-    buttonGenericStyles,
+    sharedButtonStyles,
     iconButtonStyles,
     iconButtonToggleStyles,
   ];

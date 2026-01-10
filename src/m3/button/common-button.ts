@@ -1,14 +1,14 @@
 import { html, PropertyValues } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 
-import { Button } from '../base/button.js';
+import { Button } from '../../base/button.js';
 
-import './focus-ring.js';
-import './ripple.js';
+import '../focus-ring.js';
+import '../ripple.js';
 
-import { targetStyles } from './target-styles.css.js';
-import { buttonGenericStyles } from './button-generic-styles.css.js';
-import { buttonStyles } from './button-styles.css.js';
+import { targetStyles } from '../target-styles.css.js';
+import { sharedButtonStyles } from './shared-button-styles.css.js';
+import { commonButtonStyles } from './common-button-styles.css.js';
 
 /**
  * @tag md-button
@@ -24,8 +24,8 @@ export class M3Button extends Button {
   static override styles = [
     ...super.styles,
     targetStyles,
-    buttonGenericStyles,
-    buttonStyles,
+    sharedButtonStyles,
+    commonButtonStyles,
   ];
   override render() {
     return html`
