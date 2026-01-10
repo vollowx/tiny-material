@@ -34,6 +34,9 @@ export class Menu extends Base {
   @property({ type: String, reflect: true })
   alignStrategy: import('@floating-ui/dom').Strategy = 'absolute';
   @property({ type: Number, reflect: true }) offset = 0;
+  @property({ type: Boolean }) keepOpenBlur: boolean = false;
+  @property({ type: Boolean }) keepOpenClickItem: boolean = false;
+  @property({ type: Boolean }) keepOpenClickOutside: boolean = false;
 
   @query('[part="menu"]') $menu!: HTMLElement;
   private $lastFocused: HTMLElement | null = null;
@@ -187,6 +190,7 @@ export class Menu extends Base {
               composed: true,
             })
           );
+          if (this.keepOpenClickItem) return;
           this.open = false;
         }
         return;
@@ -206,6 +210,7 @@ export class Menu extends Base {
   }
 
   #handleFocusOut(event: FocusEvent) {
+    if (this.keepOpenBlur) return;
     const newFocus = event.relatedTarget as Node;
     const isInside =
       this.contains(newFocus) ||
@@ -237,6 +242,7 @@ export class Menu extends Base {
       })
     );
 
+    if (this.keepOpenClickItem) return;
     this.open = false;
   }
 
