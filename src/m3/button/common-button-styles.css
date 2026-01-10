@@ -33,6 +33,7 @@
   box-shadow: var(--md-sys-elevation-shadow-1);
 }
 :host([variant='text']) {
+  --_background-color: transparent !important;
   padding-inline: 12px; /* FIXME: No guideline to change with `[size]` */
 }
 
