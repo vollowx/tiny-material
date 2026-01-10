@@ -33,7 +33,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  :host(:not([variant='text']):not([variant='outlined']):hover:not(:active)) {
+  :host(:not([variant='text']):not([variant='outlined']):not([variant='elevated']):hover:not(:active)) {
     box-shadow: var(--md-sys-elevation-shadow-1);
   }
   :host([variant='elevated']:hover:not(:active)) {
