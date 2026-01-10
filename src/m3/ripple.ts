@@ -25,10 +25,6 @@ function distance(
  * @tag md-ripple
  *
  * @cssprop --md-ripple-color
- *
- * FIXME: Labelled form elements get :hover state when the label is hovered,
- * but that will not trigger mouseenter/mouseleave on the ripple, so the ripple
- * will not get :hover state.
  */
 @customElement('md-ripple')
 export class M3Ripple extends Attachable(InternalsAttached(LitElement)) {
@@ -102,7 +98,7 @@ export class M3Ripple extends Attachable(InternalsAttached(LitElement)) {
 
   override handleControlChange(
     prev: HTMLElement | null = null,
-    next: HTMLElement | null = null
+    next: HTMLElement | HTMLInputElement | null = null
   ) {
     const eventHandlers = {
       keydown: this.#handleKeyDown,
@@ -113,8 +109,27 @@ export class M3Ripple extends Attachable(InternalsAttached(LitElement)) {
     };
 
     Object.keys(eventHandlers).forEach((eventName) => {
+        // @ts-ignore
+      prev?.labels?.forEach((label) =>
+        label.removeEventListener(eventName, eventHandlers[eventName])
+      );
       prev?.removeEventListener(eventName, eventHandlers[eventName]);
-      next?.addEventListener(eventName, eventHandlers[eventName]);
+
+      // Check if control is nested in label, if so, only bind to label
+      let isNestedInLabel = false;
+        // @ts-ignore
+      next?.labels?.forEach((label) => {
+        if (label.contains(next)) isNestedInLabel = true;
+      });
+
+      if (isNestedInLabel) {
+        // @ts-ignore
+        next.labels?.forEach((label) =>
+          label.addEventListener(eventName, eventHandlers[eventName])
+        );
+      } else {
+        next?.addEventListener(eventName, eventHandlers[eventName]);
+      }
     });
   }
   #calculateRipple(e: MouseEvent | null = null) {
