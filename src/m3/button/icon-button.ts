@@ -33,6 +33,12 @@ export class M3IconButton extends Button {
       <slot part="icon"></slot>
     `;
   }
+  @property({ reflect: true }) size:
+    | 'xsmall'
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'xlarge' = 'small';
   @property({ reflect: true }) variant:
     | 'text'
     | 'filled'

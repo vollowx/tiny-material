@@ -42,11 +42,19 @@ export class M3IconButtonToggle extends Switch {
       <slot part="icon checked" name="checked"></slot>
     `;
   }
+  @property({ reflect: true }) size:
+    | 'xsmall'
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'xlarge' = 'small';
   @property({ reflect: true }) variant:
     | 'text'
     | 'filled'
     | 'tonal'
     | 'outlined' = 'text';
+  @property({ reflect: true }) width: 'standard' | 'narrow' | 'wide' =
+    'standard';
 }
 
 declare global {
