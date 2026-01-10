@@ -88,7 +88,7 @@ export class PopoverController implements ReactiveController {
   }
   hostDisconnected() {
     this.cleanupAutoUpdate?.();
-    window.removeEventListener('click', this.#handleClickOutside);
+    window.removeEventListener('pointerup', this.#handleClickOutside);
   }
 
   // Different from those in the Tooltip, these timers are used to manage the
@@ -100,9 +100,10 @@ export class PopoverController implements ReactiveController {
     if (this._open) return;
     this._open = true;
     // Prevent the click that triggered the open from immediately closing it
+    // TODO: Use a global event listener to manage this more effectively
     setTimeout(() => {
       if (this._open) {
-        window.addEventListener('click', this.#handleClickOutside);
+        window.addEventListener('pointerup', this.#handleClickOutside);
       }
     }, 0);
 
