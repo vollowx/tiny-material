@@ -1,0 +1,21 @@
+:host {
+  display: inline-block;
+  min-width: 210px;
+  position: relative;
+}
+
+[part='field'] {
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+[part='value'] {
+  height: 1.5em;
+  font: var(--md-sys-typography-body-large);
+}
+
+[part='menu'] {
+  max-height: var(--md-select-menu-max-height, 300px);
+  min-width: 100%;
+}

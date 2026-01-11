@@ -87,11 +87,15 @@ export class Select extends Base {
   });
 
   override render() {
+    return html`${this.renderField()} ${this.renderMenu()}`;
+  }
+
+  protected renderField() {
     return html`
       <div
         part="field"
         @click=${this.toggle}
-        @keydown=${this.#handleFieldKeydown}
+        @keydown=${this.handleFieldKeydown}
         tabindex=${this.disabled ? '-1' : '0'}
         role="combobox"
         aria-haspopup="listbox"
@@ -100,13 +104,21 @@ export class Select extends Base {
         aria-disabled=${this.disabled}
         aria-required=${this.required}
       >
-        ${this.displayValue || this.placeholder}
-        <slot name="end-icon"></slot>
-      </div>
-      <div part="menu" id="menu" role="listbox" tabindex="-1">
-        <slot part="items" @slotchange=${this.#handleSlotChange}></slot>
+        ${this.renderFieldContent()}
       </div>
     `;
+  }
+
+  protected renderMenu() {
+    return html`
+      <div part="menu" id="menu" role="listbox" tabindex="-1">
+        <slot part="items" @slotchange=${this.handleSlotChange}></slot>
+      </div>
+    `;
+  }
+
+  protected renderFieldContent() {
+    return html`<span part="value">${this.displayValue || this.placeholder}</span>`;
   }
 
   override connectedCallback() {
@@ -152,7 +164,7 @@ export class Select extends Base {
     this.open = !this.open;
   }
 
-  #handleFieldKeydown(event: KeyboardEvent) {
+  protected handleFieldKeydown(event: KeyboardEvent) {
     if (this.disabled) return;
 
     const action = getActionFromKey(event, this.open);
@@ -257,7 +269,7 @@ export class Select extends Base {
   }
 
   // TODO: Handle multiple selected items
-  #handleSlotChange() {
+  protected handleSlotChange() {
     const items = this.listController.items;
 
     if (!this.value && items.length > 0) {

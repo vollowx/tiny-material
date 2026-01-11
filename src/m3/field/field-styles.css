@@ -3,6 +3,7 @@
   position: relative;
   vertical-align: top;
   flex-direction: column;
+  cursor: text;
 }
 
 .container {
@@ -12,7 +13,7 @@
   position: relative;
   box-sizing: border-box;
   min-height: 56px;
-  cursor: text;
+  /* cursor: text; - Removed to allow inheritance */
 }
 
 :host([disabled]) {
@@ -73,6 +74,7 @@
 
 ::slotted(*) {
   caret-color: var(--md-sys-color-primary);
+  font: var(--md-sys-typography-body-large);
 }
 
 .supporting-text {

@@ -37,16 +37,27 @@
       <input type="text" readonly id="native-select-fires" />
     </label>
 
-    <label for="demo-select">Custom select:</label>
+    <label for="demo-select">Custom filled select:</label>
 
-    <md-select id="demo-select" label="Choose a fruit">
+    <md-filled-select id="demo-select" label="Choose a fruit">
       <md-option value="blank" aria-label="blank"></md-option>
       <md-option value="apple">Apple</md-option>
       <md-option value="banana">Banana</md-option>
       <md-option value="cherry" selected>Cherry</md-option>
       <md-option value="peach" disabled>Peach</md-option>
       <md-option value="elderberry">Elderberry</md-option>
-    </md-select>
+    </md-filled-select>
+
+    <br /><br />
+
+    <label for="demo-outlined-select">Custom outlined select:</label>
+    <md-outlined-select id="demo-outlined-select" label="Choose a fruit">
+      <md-option value="apple">Apple</md-option>
+      <md-option value="banana">Banana</md-option>
+      <md-option value="cherry">Cherry</md-option>
+      <md-option value="peach" disabled>Peach</md-option>
+      <md-option value="elderberry">Elderberry</md-option>
+    </md-outlined-select>
 
     <label style="display: block"
       >event:
@@ -55,7 +66,7 @@
 
     <p>Very long select list</p>
 
-    <md-select id="fruitSelect">
+    <md-outlined-select id="fruitSelect" label="Fruit">
       <md-option value="apple">Apple</md-option>
       <md-option value="apricot">Apricot</md-option>
       <md-option value="avocado">Avocado</md-option>
@@ -103,7 +114,7 @@
       <md-option value="tangerine">Tangerine</md-option>
       <md-option value="ugli">Ugli Fruit</md-option>
       <md-option value="watermelon">Watermelon</md-option>
-    </md-select>
+    </md-outlined-select>
 
     <script>
       const nativeSelect = document.getElementById('native-select');
