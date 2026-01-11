@@ -13,8 +13,7 @@ export abstract class M3Select extends Select {
   override readonly _scrollPadding = 4;
 
   @property({ type: String }) label = '';
-  @property({ type: String, attribute: 'supporting-text' }) supportingText = '';
-  @property({ type: String, attribute: 'error-text' }) errorText = '';
+  @property({ type: String }) supportingText = '';
   @property({ type: Boolean, reflect: true }) error = false;
 
   @state() protected fieldFocused = false;

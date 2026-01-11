@@ -3,12 +3,11 @@ import { customElement } from 'lit/decorators.js';
 
 import { M3Field } from './field.js';
 
-import { fieldStyles } from './field-styles.css.js';
 import { outlinedFieldStyles } from './outlined-field-styles.css.js';
 
 @customElement('md-outlined-field')
 export class M3OutlinedField extends M3Field {
-  static override styles = [fieldStyles, outlinedFieldStyles];
+  static override styles = [...super.styles, outlinedFieldStyles];
 
   protected override renderContainerContent() {
     return html`

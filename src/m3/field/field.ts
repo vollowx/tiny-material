@@ -1,14 +1,16 @@
 import { html, PropertyValues, TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { Field } from '../../base/field.js';
-// The styles will be imported in concrete classes or here if shared.
-// import { fieldStyles } from './field-styles.css.js';
+
+import { fieldStyles } from './field-styles.css.js';
 
 /**
  * @fires {Event} change - Fired when the selected value has changed.
  * @fires {Event} input - Fired when the selected value has changed.
  */
 export abstract class M3Field extends Field {
+  static override styles = [fieldStyles];
+
   @property({ type: String, reflect: true }) label = '';
   @property({ type: String, reflect: true }) supportingText = '';
   @property({ type: Boolean, reflect: true }) disabled = false;

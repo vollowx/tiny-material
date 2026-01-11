@@ -22,8 +22,7 @@ export class MdFilledSelect extends M3Select {
         .required=${this.required}
         .error=${this.error}
         .focused=${this.open || this.fieldFocused}
-        error-text=${this.errorText}
-        supporting-text=${this.supportingText}
+        supportingtext=${this.supportingText}
         @click=${this.toggle}
         @keydown=${this.handleFieldKeydown}
         @focus=${() => (this.fieldFocused = true)}
