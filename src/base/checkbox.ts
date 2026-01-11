@@ -18,6 +18,7 @@ export class Checkbox extends Base {
 
   @property({ type: Boolean }) checked = false;
   @property({ type: Boolean }) indeterminate = false;
+  @property({ type: Boolean, reflect: true }) required = false;
 
   constructor() {
     super();
@@ -46,7 +47,8 @@ export class Checkbox extends Base {
     if (
       changed.has('checked') ||
       changed.has('disabled') ||
-      changed.has('indeterminate')
+      changed.has('indeterminate') ||
+      changed.has('required')
     ) {
       this.updateState();
     }
@@ -82,10 +84,20 @@ export class Checkbox extends Base {
       `${PROPERTY_FROM_ARIA_CHECKED[currentAriaChecked]}`
     );
 
-    this.setAttribute('tabindex', this.disabled ? '-1' : '0');
+    this.tabIndex = this.disabled ? -1 : 0;
     this[internals].ariaDisabled = String(this.disabled);
 
     this[internals].setFormValue(this.checked ? 'on' : null);
+
+    if (this.required && !this.checked) {
+      this[internals].setValidity(
+        { valueMissing: true },
+        // TODO: I18n
+        'Please check this box if you want to proceed.'
+      );
+    } else {
+      this[internals].setValidity({});
+    }
   }
 
   #handleClick = (e: Event) => {
