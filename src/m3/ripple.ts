@@ -30,6 +30,7 @@ function distance(
 export class M3Ripple extends Attachable(InternalsAttached(LitElement)) {
   static override styles = [rippleStyles];
 
+  @property() clickBehavior: 'always' | 'none' = 'always';
   @property() enterBehavior: 'always' | 'none' = 'always';
   @property() spaceBehavior: 'always' | 'once' | 'none' = 'once';
 
@@ -67,12 +68,13 @@ export class M3Ripple extends Attachable(InternalsAttached(LitElement)) {
   #handlePointerEnter = (e: PointerEvent) => {
     if (e.pointerType === 'touch') return;
     this[internals].states.add('hover');
-    if (this.#pointerDown) this.addRipple(e);
+    if (this.#pointerDown && this.clickBehavior === 'always') this.addRipple(e);
   };
 
   #handlePointerLeave = () => {
     this[internals].states.delete('hover');
-    if (this.#pointerDown) this.removeRippleAll();
+    if (this.#pointerDown && this.clickBehavior === 'always')
+      this.removeRippleAll();
   };
 
   #handlePointerDown = (e: PointerEvent) => {
@@ -83,7 +85,7 @@ export class M3Ripple extends Attachable(InternalsAttached(LitElement)) {
     document.addEventListener('touchmove', this.#handlePointerUp);
 
     if (e.button === 2) return;
-    this.addRipple(e);
+    if (this.clickBehavior === 'always') this.addRipple(e);
   };
 
   #handlePointerUp = () => {
@@ -109,7 +111,7 @@ export class M3Ripple extends Attachable(InternalsAttached(LitElement)) {
     };
 
     Object.keys(eventHandlers).forEach((eventName) => {
-        // @ts-ignore
+      // @ts-ignore
       prev?.labels?.forEach((label) =>
         label.removeEventListener(eventName, eventHandlers[eventName])
       );
@@ -117,7 +119,7 @@ export class M3Ripple extends Attachable(InternalsAttached(LitElement)) {
 
       // Check if control is nested in label, if so, only bind to label
       let isNestedInLabel = false;
-        // @ts-ignore
+      // @ts-ignore
       next?.labels?.forEach((label) => {
         if (label.contains(next)) isNestedInLabel = true;
       });
