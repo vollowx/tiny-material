@@ -1,6 +1,11 @@
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
+import {
+  internals,
+  InternalsAttached,
+} from '../base/mixins/internals-attached.js';
+
 import { toolbarStyles } from './toolbar-styles.css.js';
 
 /**
@@ -13,14 +18,14 @@ import { toolbarStyles } from './toolbar-styles.css.js';
  * @slot fab - FAB element
  */
 @customElement('md-toolbar')
-export class M3Toolbar extends LitElement {
+export class M3Toolbar extends InternalsAttached(LitElement) {
+  static override styles = [toolbarStyles];
+
   constructor() {
     super();
-    this.setAttribute('role', 'toolbar');
-    this.setAttribute('aria-orientation', this.orientation);
+    this[internals].role = 'toolbar';
+    this[internals].ariaOrientation = this.orientation;
   }
-
-  static override styles = [toolbarStyles];
 
   @property({ reflect: true }) type: 'docked' | 'floating' = 'docked';
   @property({ reflect: true }) color: 'standard' | 'vibrant' = 'standard';
@@ -29,7 +34,7 @@ export class M3Toolbar extends LitElement {
 
   protected override updated(changed: Map<string, unknown>) {
     if (changed.has('orientation')) {
-      this.setAttribute('aria-orientation', this.orientation);
+      this[internals].ariaOrientation = this.orientation;
     }
   }
 
