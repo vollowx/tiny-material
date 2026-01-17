@@ -4,58 +4,58 @@
 
 .container {
   border-radius: 4px;
-  padding: 0 16px;
-}
-
-.input-wrapper {
-  padding: 16px 0;
+  padding-inline: 16px;
 }
 
 .outline {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  display: flex;
   border-radius: inherit;
   color: var(--md-sys-color-outline);
+  display: flex;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
 }
 
 .outline-start,
 .outline-notch,
 .outline-end {
   border: var(--_outline-width) solid currentColor;
+  box-sizing: border-box;
   transition:
     border-width var(--md-sys-motion-duration-short3)
       var(--md-sys-motion-easing-emphasized),
     border-top-color var(--md-sys-motion-duration-short3)
       var(--md-sys-motion-easing-emphasized);
-  box-sizing: border-box;
 }
 
 .outline-start {
-  border-right: none;
   border-radius: inherit;
-  border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  border-right: none;
+  border-top-right-radius: 0;
   width: 12px;
 }
 
 .outline-end {
   border-left: none;
   border-radius: inherit;
-  border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
   flex: 1;
 }
 
 .outline-notch {
+  align-items: flex-start;
   border-left: none;
   border-right: none;
   display: flex;
-  align-items: flex-start;
-  padding: 0 4px;
   margin-top: 0;
   max-width: calc(100% - 24px);
+  padding: 0 4px;
+}
+
+:host(:not([haslabel])) .outline-notch {
+  display: none;
 }
 
 .label {

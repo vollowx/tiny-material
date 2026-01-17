@@ -2,6 +2,7 @@ import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 import { M3Field } from './field.js';
+import '../ripple.js';
 
 import { filledFieldStyles } from './filled-field-styles.css.js';
 

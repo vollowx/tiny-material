@@ -6,13 +6,13 @@ md-outlined-field {
   inset: 0;
 }
 [part='input'] {
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
   background: transparent;
+  border: none;
   color: inherit;
   font: inherit;
-  padding: 0;
+  height: 100%;
   margin: 0;
+  outline: none;
+  padding: 0;
+  width: 100%;
 }

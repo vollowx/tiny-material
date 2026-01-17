@@ -1,33 +1,35 @@
 :host {
-  display: inline-flex;
-  position: relative;
-  vertical-align: top;
-  flex-direction: column;
   cursor: text;
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+  vertical-align: top;
 }
 
 .container {
+  align-items: center;
+  box-sizing: border-box;
   display: flex;
   flex: 1;
-  align-items: center;
-  position: relative;
-  box-sizing: border-box;
   min-height: 56px;
-  /* cursor: text; - Removed to allow inheritance */
+  padding-block: 16px;
+  position: relative;
 }
 
 :host([disabled]) {
-  pointer-events: none;
   opacity: 0.38;
+  pointer-events: none;
 }
 
 .start,
 .end {
-  display: flex;
   align-items: center;
+  color: var(--md-sys-color-on-surface-variant);
+  display: flex;
   justify-content: center;
   min-width: 48px;
-  color: var(--md-sys-color-on-surface-variant);
 }
 
 .start[hidden],
@@ -36,18 +38,20 @@
 }
 
 .middle {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  justify-content: center;
-  position: relative;
   height: 100%;
+  justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 
 .label {
   font: var(--md-sys-typography-body-large);
+  max-width: calc(100% - 24px);
   pointer-events: none;
+  text-overflow: ellipsis;
   transform-origin: top left;
   transition:
     margin-top var(--md-sys-motion-duration-short3)
@@ -55,18 +59,15 @@
     font-size var(--md-sys-motion-duration-short3)
       var(--md-sys-motion-easing-emphasized);
   white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: calc(100% - 24px);
 }
 
 .input-wrapper {
-  display: flex;
   align-items: center;
+  display: flex;
   flex: 1;
 }
 
-:host([haslabel]:not([focused]):not([populated]))
-  ::slotted(input)::placeholder,
+:host([haslabel]:not([focused]):not([populated])) ::slotted(input)::placeholder,
 :host([haslabel]:not([focused]):not([populated]))
   ::slotted(textarea)::placeholder {
   opacity: 0;
@@ -78,11 +79,11 @@
 }
 
 .supporting-text {
-  font: var(--md-sys-typography-body-small);
   color: var(--md-sys-color-on-surface-variant);
-  padding-top: 4px;
-  padding-inline-start: 16px;
+  font: var(--md-sys-typography-body-small);
   padding-inline-end: 16px;
+  padding-inline-start: 16px;
+  padding-top: 4px;
 }
 
 :host([error]) ::slotted(*) {

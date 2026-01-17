@@ -118,7 +118,9 @@ export class Select extends Base {
   }
 
   protected renderFieldContent() {
-    return html`<span part="value">${this.displayValue || this.placeholder}</span>`;
+    return html`<span part="value"
+      >${this.displayValue || this.placeholder}</span
+    >`;
   }
 
   override connectedCallback() {

@@ -5,14 +5,14 @@
 }
 
 [part='field'] {
-  width: 100%;
-  outline: none;
   cursor: pointer;
+  outline: none;
+  width: 100%;
 }
 
 [part='value'] {
-  height: 1.5em;
   font: var(--md-sys-typography-body-large);
+  height: 1.5em;
 }
 
 [part='menu'] {

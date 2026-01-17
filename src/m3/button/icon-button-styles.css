@@ -12,8 +12,9 @@
     transparent
   );
   height: var(--_h);
+  transition: border-radius var(--md-sys-motion-duration-medium2)
+    var(--md-sys-motion-easing-emphasized);
   width: var(--_h);
-  transition: border-radius var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
 }
 
 :host([variant='text']) {
