@@ -94,7 +94,6 @@
   border-style: solid;
   border-width: 1px;
   box-shadow: none;
-  padding-inline: calc(var(--_pad) - 1px);
 }
 :host([variant='text']) {
   --_background-color: transparent;
