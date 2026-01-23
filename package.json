@@ -1,6 +1,6 @@
 {
   "name": "@vollowx/see",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Standard Extensible Elements. A web components library that can be styled and extended freely, while pre-providing components in Material 3 design guideline.",
   "author": "vollowx",
   "license": "MIT",
