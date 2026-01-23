@@ -1,11 +1,8 @@
 :host {
   --_padding: 16px;
   --_gap: 32px;
-  --_container-color: var(
-    --md-toolbar-container-color,
-    var(--md-sys-color-surface-container)
-  );
-  --_on-color: var(--md-toolbar-on-color, var(--md-sys-color-on-surface));
+  --_container-color: var(--md-sys-color-surface-container);
+  --_on-color: var(--md-sys-color-on-surface);
   align-items: center;
   background-color: color-mix(
     in srgb,
@@ -26,10 +23,7 @@
 :host([type='floating']) {
   --_padding: 8px;
   --_gap: 4px;
-  --_container-color: var(
-    --md-toolbar-container-color,
-    var(--md-sys-color-surface-container-high)
-  );
+  --_container-color: var(--md-sys-color-surface-container-high);
   background: transparent;
   box-shadow: none;
   max-width: calc(100% - 32px);
@@ -82,6 +76,7 @@
   width: 100%;
 }
 
+::slotted(md-icon-button),
 ::slotted(md-icon-button-toggle) {
   --md-focus-ring-shape: calc(var(--_h) / 2);
   border-radius: calc(var(--_h) / 2);
@@ -92,16 +87,10 @@
 
 /* TODO: Not done yet */
 :host([color='vibrant']) {
-  --_container-color: var(
-    --md-toolbar-container-color,
-    var(--md-sys-color-primary-container)
-  );
-  --_on-color: var(
-    --md-toolbar-on-color,
-    var(--md-sys-color-on-primary-container)
-  );
+  --_container-color: var(--md-sys-color-primary-container);
+  --_on-color: var(--md-sys-color-on-primary-container);
 }
-:host([color='vibrant']) ::slotted(md-icon-button[variant='standard']),
+:host([color='vibrant']) ::slotted(md-icon-button[variant='text']),
 :host([color='vibrant']) ::slotted(md-icon-button-toggle[variant='tonal']) {
   --_text-color: var(--md-sys-color-on-primary-container);
 }
