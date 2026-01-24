@@ -31,6 +31,9 @@ export class Switch extends Base {
     this.addEventListener('click', this.#handleClick);
     this.addEventListener('keydown', this.#handleKeyDown);
     this.addEventListener('keyup', this.#handleKeyUp);
+    this.labels.forEach((label) => {
+      label.addEventListener('click', this.#handleLabelClick);
+    });
   }
 
   override disconnectedCallback() {
@@ -38,6 +41,9 @@ export class Switch extends Base {
     this.removeEventListener('click', this.#handleClick);
     this.removeEventListener('keydown', this.#handleKeyDown);
     this.removeEventListener('keyup', this.#handleKeyUp);
+    this.labels.forEach((label) => {
+      label.removeEventListener('click', this.#handleLabelClick);
+    });
   }
 
   protected override updated(changed: Map<string, any>) {
@@ -60,31 +66,69 @@ export class Switch extends Base {
     this[internals].setFormValue(this.checked ? 'on' : null);
   }
 
-  _ignoreClick = false;
+  /**
+   * **Drag-and-drop to the other side**
+   *
+   * *`checked` is supposed to be changed once*
+   *
+   * 1. `pointerdown`: _ignoreClick = false
+   * 2. `pointermove`: _ignoreClick = true
+   * 3. `pointerup`: `checked` changed
+   * 4. `click`: ignored, _ignoreClick = false
+   *
+   * **Drag-and-drop to the other side, then click**
+   *
+   * *`checked` is supposed to be changed twice*
+   *
+   * 1. `pointerdown`: _ignoreClick = false
+   * 2. `pointermove`: _ignoreClick = true
+   * 3. `pointerup`: `checked` changed(1)
+   * 4. `click`: ignored, _ignoreClick = false
+   * 5. `click`: `checked` changed(2)
+   *
+   * **Drag-and-drop to the other side, then click the label**
+   *
+   * *`checked` is supposed to be changed twice*
+   *
+   * 1. `pointerdown`: _ignoreClick = false
+   * 2. `pointermove`: _ignoreClick = true
+   * 3. `pointerup`: `checked` changed(1)
+   * 4. `click` on label: _ignoreClick = false
+   * 5. `click` on switch: `checked` changed(2)
+   */
+  protected _ignoreClick = false;
+
+  #handleLabelClick = () => {
+    this._ignoreClick = false;
+  };
 
   #handleClick = (e: Event) => {
     e.stopPropagation();
     e.preventDefault();
-    if (this._ignoreClick) return;
-    this.#toggleChecked();
+    if (this._ignoreClick) {
+      console.log('ignoring click from', e.target);
+      this._ignoreClick = false;
+      return;
+    }
+    this.toggleChecked();
   };
 
   #handleKeyDown = (e: KeyboardEvent) => {
     if (e.key !== ' ' && e.key !== 'Enter') return;
     e.preventDefault();
     e.stopPropagation();
-    if (e.key === 'Enter') this.#toggleChecked();
+    if (e.key === 'Enter') this.toggleChecked();
   };
 
   #handleKeyUp = (e: KeyboardEvent) => {
     if (e.key === ' ') {
       e.preventDefault();
       e.stopPropagation();
-      this.#toggleChecked();
+      this.toggleChecked();
     }
   };
 
-  #toggleChecked() {
+  protected toggleChecked() {
     if (this.disabled) return;
 
     this.checked = !this.checked;

@@ -142,7 +142,8 @@ export class SdToolbar extends LitElement {
       <md-menu
         id="theme-menu"
         for="action-toggle-theme"
-        align="top-end"
+        offset="12"
+        align="top"
         alignStrategy="fixed"
         @select=${this._handleThemeSelect}
       >

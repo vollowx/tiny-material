@@ -103,7 +103,7 @@ export class Checkbox extends Base {
   #handleClick = (e: Event) => {
     e.stopPropagation();
     e.preventDefault();
-    this.#toggleChecked();
+    this.toggleChecked();
   };
 
   #handleKeyDown = (e: KeyboardEvent) => {
@@ -117,11 +117,11 @@ export class Checkbox extends Base {
     if (e.key === ' ') {
       e.preventDefault();
       e.stopPropagation();
-      this.#toggleChecked();
+      this.toggleChecked();
     }
   };
 
-  #toggleChecked() {
+  protected toggleChecked() {
     if (this.disabled) return;
 
     this.checked = !this.checked;
