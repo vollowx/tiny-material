@@ -9,7 +9,6 @@ import { M3Ripple } from './ripple.js';
 import { switchStyles } from './switch-styles.css.js';
 import { targetStyles } from './target-styles.css.js';
 
-// FIXME: Drag-and-drop breaks the support for working with `<label>`. Temporarily disabled.
 function isRTL() {
   return document.documentElement.dir === 'rtl';
 }

@@ -1,4 +1,4 @@
-import { ReactiveController, ReactiveControllerHost } from 'lit';
+import { isServer, ReactiveController, ReactiveControllerHost } from 'lit';
 
 import {
   internals,
@@ -181,7 +181,7 @@ export class PopoverController implements ReactiveController {
   }
 
   // TODO: Provide the ability to specify an arrow element.
-  private _dummyArrow = document.createElement('div');
+  private _dummyArrow = isServer ? null : document.createElement('div');
 
   reposition() {
     const trigger = this.config.trigger();
