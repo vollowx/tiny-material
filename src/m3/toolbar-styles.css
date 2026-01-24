@@ -76,11 +76,14 @@
   width: 100%;
 }
 
+::slotted(md-button),
+::slotted(md-button-toggle),
 ::slotted(md-icon-button),
 ::slotted(md-icon-button-toggle) {
   --md-focus-ring-shape: calc(var(--_h) / 2);
   border-radius: calc(var(--_h) / 2);
 }
+::slotted(md-button-toggle[variant='tonal']:not(:state(checked))),
 ::slotted(md-icon-button-toggle[variant='tonal']:not(:state(checked))) {
   --_background-color: transparent;
 }
