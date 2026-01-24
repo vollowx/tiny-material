@@ -247,7 +247,8 @@ export class Select extends Base {
   }
 
   #updateDisplayValue() {
-    if (isServer) return '';
+    if (isServer) return;
+
     // We need to wait for items to be available.
     // Using a microtask or just checking if items exist.
     // Since this is called in updated(), items might be available if children are slotted.
