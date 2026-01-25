@@ -149,21 +149,18 @@ export class Select extends Base {
   }
 
   protected override async firstUpdated(changed: PropertyValues<Select>) {
-    // If this has been handled on update already due to SSR, try again.
-    if (!this.lastSelectedOptionRecords.length) {
-      this.initUserSelection();
+    // Wait for slotted children to be ready
+    await this.updateComplete;
+    if (!this.listController.items.length) {
+      setTimeout(() => {
+        if (!this.lastSelectedOptionRecords.length) {
+          this.updateValueAndDisplayText();
+        }
+      }, 0);
     }
 
-    // Case for when the DOM is streaming, there are no children, and a child
-    // has [selected] set on it, we need to wait for DOM to render something.
-    if (
-      !this.lastSelectedOptionRecords.length &&
-      !isServer &&
-      !this.options.length
-    ) {
-      setTimeout(() => {
-        this.updateValueAndDisplayText();
-      });
+    if (!this.lastSelectedOptionRecords.length) {
+      this.initUserSelection();
     }
 
     super.firstUpdated(changed);
