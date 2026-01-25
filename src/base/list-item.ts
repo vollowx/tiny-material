@@ -13,6 +13,10 @@ export class ListItem extends FormAssociated(InternalsAttached(LitElement)) {
   @property({ type: Boolean, reflect: true }) selected = false;
   @property({ type: Boolean, reflect: true }) focused = false;
 
+  get displayText(): string {
+    return this.innerText.trim();
+  }
+
   _role: string = 'option';
 
   override connectedCallback() {

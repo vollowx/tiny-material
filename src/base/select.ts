@@ -301,11 +301,15 @@ export class Select extends Base {
       changed = this.lastSelectedOption !== firstSelectedOption;
       this.lastSelectedOption = firstSelectedOption;
       this[VALUE] = firstSelectedOption.value;
-      this.displayText = firstSelectedOption.innerText;
+      this.displayText = firstSelectedOption.displayText;
     } else {
       changed = this.lastSelectedOption !== null;
       this.lastSelectedOption = null;
       this[VALUE] = '';
+      // Keep displayText if it was set (e.g., from SSR) and options aren't available yet.
+      if (this.options.length === 0 && this.displayText) {
+        return changed;
+      }
       this.displayText = '';
     }
 
