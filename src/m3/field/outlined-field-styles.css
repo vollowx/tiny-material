@@ -30,24 +30,24 @@
 
 .outline-start {
   border-radius: inherit;
-  border-bottom-right-radius: 0;
-  border-right: none;
-  border-top-right-radius: 0;
+  border-end-end-radius: 0;
+  border-inline-end: none;
+  border-start-end-radius: 0;
   width: 12px;
 }
 
 .outline-end {
-  border-left: none;
+  border-inline-start: none;
   border-radius: inherit;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
+  border-end-start-radius: 0;
+  border-start-start-radius: 0;
   flex: 1;
 }
 
 .outline-notch {
   align-items: flex-start;
-  border-left: none;
-  border-right: none;
+  border-inline-start: none;
+  border-inline-end: none;
   display: flex;
   margin-top: 0;
   max-width: calc(100% - 24px);
@@ -60,7 +60,7 @@
 
 .label {
   /* TODO: Make customizable through variables */
-  margin-top: 15px;
+  margin-top: calc(var(--_padding-top) - 1px);
 }
 
 :host(:hover) .label,
@@ -90,8 +90,9 @@
 
 :host([populated]) .label,
 :host([focused]) .label {
-  font-size: 0.75rem;
-  margin-top: -12px;
+  font-size: 0.75em;
+  /* FIXME: Hardcoded active outline width to 3px */
+  margin-top: calc(-0.75em - 3px);
 }
 
 :host([disabled]) .outline {

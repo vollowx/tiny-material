@@ -1,4 +1,7 @@
 :host {
+  --_min-height: 56px;
+  --_padding-top: 16px;
+  --_padding-bottom: 16px;
   cursor: text;
   display: inline-flex;
   flex-direction: column;
@@ -13,8 +16,7 @@
   box-sizing: border-box;
   display: flex;
   flex: 1;
-  min-height: 56px;
-  padding-block: 16px;
+  min-height: var(--_min-height);
   position: relative;
 }
 
@@ -65,8 +67,10 @@
   align-items: center;
   display: flex;
   flex: 1;
+  padding-block: var(--_padding-top) var(--_padding-bottom);
 }
 
+/* FIXME: Safari doesn't support ::placeholder */
 :host([haslabel]:not([focused]):not([populated])) ::slotted(input)::placeholder,
 :host([haslabel]:not([focused]):not([populated]))
   ::slotted(textarea)::placeholder {
