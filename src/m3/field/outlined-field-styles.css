@@ -29,25 +29,25 @@
 }
 
 .outline-start {
-  border-radius: inherit;
   border-end-end-radius: 0;
   border-inline-end: none;
+  border-radius: inherit;
   border-start-end-radius: 0;
   width: 12px;
 }
 
 .outline-end {
+  border-end-start-radius: 0;
   border-inline-start: none;
   border-radius: inherit;
-  border-end-start-radius: 0;
   border-start-start-radius: 0;
   flex: 1;
 }
 
 .outline-notch {
   align-items: flex-start;
-  border-inline-start: none;
   border-inline-end: none;
+  border-inline-start: none;
   display: flex;
   margin-top: 0;
   max-width: calc(100% - 24px);
