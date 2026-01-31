@@ -2,9 +2,9 @@
   --_on-color: var(--md-sys-color-on-primary);
   --_color: var(--md-sys-color-primary);
   /* [size='small'] */
-  --_h: 40px; /** height **/
-  --_w_narrow: 32px; /* width for iconOnly='narrow' */
-  --_w_wide: 52px; /* width for iconOnly='wide' */
+  --_h: 40px; /* height */
+  --_wn: 32px; /* width for icon button only [width='narrow'] */
+  --_ww: 52px; /* width for icon button only [width='wide'] */
   --_icon-size: 20px;
   --_pad: 16px;
   --_gap: 8px;
@@ -31,15 +31,15 @@
 
 :host([size='xsmall']) {
   --_h: 32px;
-  --_w_narrow: 28px;
-  --_w_wide: 40px;
+  --_wn: 28px;
+  --_ww: 40px;
   --_pad: 12px;
   --_gap: 4px;
 }
 :host([size='medium']) {
   --_h: 56px;
-  --_w_narrow: 48px;
-  --_w_wide: 72px;
+  --_wn: 48px;
+  --_ww: 72px;
   --_icon-size: 24px;
   --_pad: 24px;
   --_gap: 8px;
@@ -49,8 +49,8 @@
 }
 :host([size='large']) {
   --_h: 96px;
-  --_w_narrow: 64px;
-  --_w_wide: 128px;
+  --_wn: 64px;
+  --_ww: 128px;
   --_icon-size: 32px;
   --_pad: 48px;
   --_gap: 12px;
@@ -60,8 +60,8 @@
 }
 :host([size='xlarge']) {
   --_h: 136px;
-  --_w_narrow: 104px;
-  --_w_wide: 184px;
+  --_wn: 104px;
+  --_ww: 184px;
   --_icon-size: 40px;
   --_pad: 64px;
   --_gap: 16px;

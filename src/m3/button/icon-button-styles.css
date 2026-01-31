@@ -26,10 +26,10 @@
 }
 
 :host([width='narrow']) {
-  width: var(--_w_narrow);
+  width: var(--_wn);
 }
 :host([width='wide']) {
-  width: var(--_w_wide);
+  width: var(--_ww);
 }
 
 :host(:disabled),
