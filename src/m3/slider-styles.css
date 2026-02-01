@@ -101,8 +101,7 @@ md-focus-ring {
   --_tick-color: var(--md-sys-color-on-secondary-container);
   /* TODO: Properly add padding while keeping the input, tick and handle at the same position */
   /*margin-inline: 6px;*/
-  background-size: calc((100% - var(--_tick-size) * 2) / var(--_ticks))
-    100%;
+  background-size: calc((100% - var(--_tick-size) * 2) / var(--_ticks)) 100%;
   background-image: radial-gradient(
     circle at var(--_tick-size) center,
     var(--_tick-color) 0,
@@ -122,31 +121,29 @@ md-focus-ring {
 
 /* Track and tickmarks clipping */
 .inactive-before {
-  clip-path: inset(0 var(--_cut-inv-start) 0 0);
+  clip-path: inset(0 var(--_cut-inv-start) 0 0 round 2px);
 }
-
 .inactive-after {
-  clip-path: inset(0 0 0 var(--_cut-inv-end));
+  clip-path: inset(0 0 0 var(--_cut-inv-end) round 2px);
 }
-
 .active {
-  clip-path: inset(0 var(--_cut-end) 0 0);
+  clip-path: inset(0 var(--_cut-end) 0 0 round 2px);
 }
 .ranged .active {
-  clip-path: inset(0 var(--_cut-end) 0 var(--_cut-start));
+  clip-path: inset(0 var(--_cut-end) 0 var(--_cut-start) round 2px);
 }
 
 :host(:dir(rtl)) .inactive-before {
-  clip-path: inset(0 0 0 var(--_cut-inv-start));
+  clip-path: inset(0 0 0 var(--_cut-inv-start) round 2px);
 }
 :host(:dir(rtl)) .inactive-after {
-  clip-path: inset(0 var(--_cut-inv-end) 0 0);
+  clip-path: inset(0 var(--_cut-inv-end) 0 0 round 2px);
 }
 :host(:dir(rtl)) .active {
-  clip-path: inset(0 0 0 var(--_cut-end));
+  clip-path: inset(0 0 0 var(--_cut-end) round 2px);
 }
 :host(:dir(rtl)) .ranged .active {
-  clip-path: inset(0 var(--_cut-start) 0 var(--_cut-end));
+  clip-path: inset(0 var(--_cut-start) 0 var(--_cut-end) round 2px);
 }
 
 /* Handle */
