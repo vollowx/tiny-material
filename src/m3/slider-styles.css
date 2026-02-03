@@ -69,7 +69,7 @@ md-focus-ring {
 .track div,
 .tickmarks div {
   position: absolute;
-  inset: 0;
+  inset: 0 calc(var(--_target-size) / 2);
 }
 
 .track div {
@@ -147,6 +147,15 @@ md-focus-ring {
 }
 
 /* Handle */
+.handles-padded {
+  position: absolute;
+  block-size: 100%;
+  inline-size: 100%;
+  inset: 0;
+  padding-inline: calc(var(--_target-size) / 2);
+  box-sizing: border-box;
+}
+
 .handles {
   position: relative;
   block-size: 100%;
@@ -218,10 +227,15 @@ md-focus-ring {
   opacity: 0;
 }
 
-:host(:not(:disabled):hover) .label,
 :host(:not(:disabled)) :where(:has(input:active)) .label,
 :host(:not(:disabled)) :where(:has(input:focus-visible)) .label {
   opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :host(:not(:disabled)) :where(:has(input:hover)) .label {
+    opacity: 1;
+  }
 }
 
 /* Range input */
@@ -251,33 +265,18 @@ input[type='range']:focus {
 ::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  block-size: var(--_handle-height);
-  inline-size: var(--_handle-width-end);
+  block-size: var(--_target-size);
+  inline-size: var(--_target-size);
   opacity: 0;
   z-index: 2;
 }
 ::-moz-range-thumb {
   appearance: none;
-  block-size: var(--_handle-height);
-  inline-size: var(--_handle-width-end);
+  block-size: var(--_target-size);
+  inline-size: var(--_target-size);
   opacity: 0;
   z-index: 2;
   transform: scaleX(0);
-}
-
-/* Safari */
-input.start::-webkit-slider-thumb {
-  --_pad: calc((var(--_target-size) - var(--_handle-width-start)) / 2);
-  transform: translateX(calc(var(--_pad) - 2 * var(--_start) * var(--_pad)));
-}
-input.end::-webkit-slider-thumb {
-  --_pad: calc((var(--_target-size) - var(--_handle-width-end)) / 2);
-  transform: translateX(calc(var(--_pad) - 2 * var(--_end) * var(--_pad)));
-}
-input:dir(rtl)::-webkit-slider-thumb {
-  transform: translateX(
-    calc(-1 * (var(--_pad) - 2 * var(--frac) * var(--_pad)))
-  );
 }
 
 .ranged input {

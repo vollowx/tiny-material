@@ -70,9 +70,11 @@ export class M3Slider extends Slider {
     >
       ${when(this.range, () => this.renderInput(inputStartProps))}
       ${this.renderInput(inputEndProps)} ${this.renderTrack()}
-      <div class="handles">
-        ${when(this.range, () => this.renderHandle(handleStartProps))}
-        ${this.renderHandle(handleEndProps)}
+      <div class="handles-padded">
+        <div class="handles">
+          ${when(this.range, () => this.renderHandle(handleStartProps))}
+          ${this.renderHandle(handleEndProps)}
+        </div>
       </div>
     </div>`;
   }
