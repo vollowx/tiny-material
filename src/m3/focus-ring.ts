@@ -1,6 +1,7 @@
 import { LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 
+import { customElement } from '../core/decorators.js';
 import { focusVisible } from '../core/focus-visible.js';
 import { Attachable } from '../base/mixins/attachable.js';
 import {
@@ -25,7 +26,7 @@ import { focusRingStyles } from './focus-ring-styles.css.js';
  * @cssprop --md-focus-ring-shape-start-start
  * @cssprop --md-focus-ring-width
  */
-@customElement('md-focus-ring')
+@customElement('md-focus-ring', false)
 export class M3FocusRing extends Attachable(InternalsAttached(LitElement)) {
   constructor() {
     super();

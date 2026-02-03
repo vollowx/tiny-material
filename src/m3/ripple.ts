@@ -1,6 +1,7 @@
 import { LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 
+import { customElement } from '../core/decorators.js';
 import { Attachable } from '../base/mixins/attachable.js';
 import {
   InternalsAttached,
@@ -26,7 +27,7 @@ function distance(
  *
  * @cssprop --md-ripple-color
  */
-@customElement('md-ripple')
+@customElement('md-ripple', false)
 export class M3Ripple extends Attachable(InternalsAttached(LitElement)) {
   static override styles = [rippleStyles];
 
