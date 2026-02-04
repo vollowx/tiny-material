@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2018-2023 Google, Inc.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import { LitElement, html, nothing, PropertyValues } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { live } from 'lit/directives/live.js';
