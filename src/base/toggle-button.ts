@@ -13,14 +13,14 @@ const PROPERTY_FROM_ARIA_PRESSED = {
 
 const Base = FormAssociated(InternalsAttached(LitElement));
 
-export class Switch extends Base {
+export class ToggleButton extends Base {
   static override styles = [hiddenStyles];
 
   @property({ type: Boolean }) checked = false;
 
   constructor() {
     super();
-    this[internals].role = 'switch';
+    this[internals].role = 'button';
 
     this.checked = this.hasAttribute('checked');
     this.updateInternals();
@@ -52,7 +52,7 @@ export class Switch extends Base {
     }
   }
 
-  private updateInternals() {
+  protected updateInternals() {
     this[internals].states.delete('unchecked');
     this[internals].states.delete('checked');
     this[internals].ariaPressed = this.checked ? 'true' : 'false';

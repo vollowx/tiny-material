@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 
-import { Switch } from '../base/switch.js';
+import { ToggleButton } from '../base/toggle-button.js';
 
 import './focus-ring.js';
 import { M3Ripple } from './ripple.js';
@@ -20,7 +20,7 @@ function isRTL() {
  * @csspart label
  */
 @customElement('md-switch')
-export class M3Switch extends Switch {
+export class M3Switch extends ToggleButton {
   static override styles = [targetStyles, switchStyles];
   override render() {
     return html`

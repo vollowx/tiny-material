@@ -1,8 +1,7 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import { Switch } from '../../base/switch.js';
-import { internals } from '../../base/mixins/internals-attached.js';
+import { ToggleButton } from '../../base/toggle-button.js';
 
 import '../focus-ring.js';
 import '../ripple.js';
@@ -21,7 +20,7 @@ import { iconButtonStyles } from './icon-button-styles.css.js';
  * @slot checked - icon when checked
  */
 @customElement('md-icon-button-toggle')
-export class M3IconButtonToggle extends Switch {
+export class M3IconButtonToggle extends ToggleButton {
   static override styles = [
     ...super.styles,
     targetStyles,
@@ -29,10 +28,6 @@ export class M3IconButtonToggle extends Switch {
     iconButtonStyles,
     sharedButtonToggleStyles,
   ];
-  constructor() {
-    super();
-    this[internals].role = 'button';
-  }
   override render() {
     return html`
       <md-focus-ring></md-focus-ring>
