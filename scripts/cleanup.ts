@@ -17,7 +17,7 @@ const registry: Record<string, TargetConfig> = {
     name: 'tsc compiled files',
     globs: ['**/*.js'],
     condition: async (filePath) => {
-      if (filePath.endsWith('.map')) return true;
+      if (filePath.endsWith('.css.js')) return true;
       const base = filePath.replace(/\.js$/, '');
       return await Bun.file(`${base}.ts`).exists();
     },
