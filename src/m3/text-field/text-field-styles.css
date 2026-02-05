@@ -1,11 +1,12 @@
 :host {
   display: inline-block;
+  min-width: 210px;
   -webkit-user-select: none;
   user-select: none;
 }
 md-filled-field,
 md-outlined-field {
-  inset: 0;
+  width: 100%;
 }
 [part='input'] {
   background: transparent;
