@@ -1,37 +1,39 @@
-:host {
-  transition:
-    box-shadow var(--md-sys-motion-std-effects-slow-duration)
-      var(--md-sys-motion-std-effects-slow),
-    border-radius var(--md-sys-motion-std-effects-slow-duration)
-      var(--md-sys-motion-std-effects-slow),
-    background-color var(--md-sys-motion-exp-effects-fast-duration)
-      var(--md-sys-motion-exp-effects-fast),
-    color var(--md-sys-motion-exp-effects-fast-duration)
-      var(--md-sys-motion-exp-effects-fast);
-}
+@layer button-toggle-shared {
+  :host {
+    transition:
+      box-shadow var(--md-sys-motion-std-effects-slow-duration)
+        var(--md-sys-motion-std-effects-slow),
+      border-radius var(--md-sys-motion-std-effects-slow-duration)
+        var(--md-sys-motion-std-effects-slow),
+      background-color var(--md-sys-motion-exp-effects-fast-duration)
+        var(--md-sys-motion-exp-effects-fast),
+      color var(--md-sys-motion-exp-effects-fast-duration)
+        var(--md-sys-motion-exp-effects-fast);
+  }
 
-:host(:state(checked)) {
-  --md-focus-ring-shape: var(--_rad-sq);
-  border-radius: var(--_rad-sq);
-}
+  :host(:state(checked)) {
+    --md-focus-ring-shape: var(--_rad-sq);
+    border-radius: var(--_rad-sq);
+  }
 
-:host(:state(checked)) [part~='unchecked'] {
-  display: none;
-}
-:host(:not(:state(checked))) [part~='checked'] {
-  display: none;
-}
+  :host(:state(checked)) [part~='unchecked'] {
+    display: none;
+  }
+  :host(:not(:state(checked))) [part~='checked'] {
+    display: none;
+  }
 
-:host([variant='filled']:not(:state(checked)):not(:disabled)) {
-  --_background-color: var(--md-sys-color-surface-container);
-  --_text-color: var(--md-sys-color-on-surface-variant);
-}
-:host([variant='tonal']:not(:state(checked)):not(:disabled)) {
-  --_background-color: var(--md-sys-color-surface-container-highest);
-  --_text-color: var(--md-sys-color-on-surface-variant);
-}
-:host([variant='outlined']:state(checked)) {
-  --_background-color: var(--md-sys-color-inverse-surface);
-  --_text-color: var(--md-sys-color-inverse-on-surface);
-  border-width: 0;
+  :host([variant='filled']:not(:state(checked))) {
+    --_background-color: var(--md-sys-color-surface-container);
+    --_text-color: var(--md-sys-color-on-surface-variant);
+  }
+  :host([variant='tonal']:not(:state(checked))) {
+    --_background-color: var(--md-sys-color-surface-container-highest);
+    --_text-color: var(--md-sys-color-on-surface-variant);
+  }
+  :host([variant='outlined']:state(checked)) {
+    --_background-color: var(--md-sys-color-inverse-surface);
+    --_text-color: var(--md-sys-color-inverse-on-surface);
+    border-width: 0;
+  }
 }

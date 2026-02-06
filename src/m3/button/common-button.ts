@@ -1,5 +1,5 @@
-import { html, PropertyValues } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { html } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
 import { Button } from '../../base/button.js';
 

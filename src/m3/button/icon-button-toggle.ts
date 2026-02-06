@@ -25,8 +25,8 @@ export class M3IconButtonToggle extends ToggleButton {
     ...super.styles,
     targetStyles,
     sharedButtonStyles,
-    iconButtonStyles,
     sharedButtonToggleStyles,
+    iconButtonStyles,
   ];
   override render() {
     return html`

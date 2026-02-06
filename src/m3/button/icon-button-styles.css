@@ -1,51 +1,62 @@
-:host {
-  --_icon-size: 24px;
-  background-color: color-mix(
-    in srgb,
-    var(--_background-color) var(--_background-opacity, 100%),
-    transparent
-  );
-  border-radius: calc(var(--_h) / 2);
-  color: color-mix(
-    in srgb,
-    var(--_text-color) var(--_text-opacity, 100%),
-    transparent
-  );
-  height: var(--_h);
-  transition: border-radius var(--md-sys-motion-std-effects-slow-duration)
-    var(--md-sys-motion-std-effects-slow);
-  width: var(--_h);
-}
+@layer icon-button {
+  :host {
+    background-color: color-mix(
+      in srgb,
+      var(--_background-color) var(--_background-opacity, 100%),
+      transparent
+    );
+    border-radius: calc(var(--_h) / 2);
+    color: color-mix(
+      in srgb,
+      var(--_text-color) var(--_text-opacity, 100%),
+      transparent
+    );
+    transition: border-radius var(--md-sys-motion-std-effects-slow-duration)
+      var(--md-sys-motion-std-effects-slow);
+    width: var(--_h);
+  }
 
-:host([variant='text']) {
-  --_color: var(--md-sys-color-on-surface-variant);
-}
+  :host([size='xsmall']) {
+    --_wn: 28px;
+    --_ww: 40px;
+  }
+  :host([size='small']) {
+    --_wn: 32px; /* width for icon button only [width=narrow] */
+    --_ww: 52px; /* width for icon button only [width=wide] */
+    --_icon-size: 24px !important;
+  }
+  :host([size='medium']) {
+    --_wn: 48px;
+    --_ww: 72px;
+  }
+  :host([size='large']) {
+    --_wn: 64px;
+    --_ww: 128px;
+  }
+  :host([size='xlarge']) {
+    --_wn: 104px;
+    --_ww: 184px;
+  }
 
-:host([variant='text']:state(checked):not(:disabled)) {
-  --_text-color: var(--md-sys-color-primary);
-}
+  :host([variant='text']) {
+    --_color: var(--md-sys-color-on-surface-variant);
+  }
 
-:host([width='narrow']) {
-  width: var(--_wn);
-}
-:host([width='wide']) {
-  width: var(--_ww);
-}
+  :host([variant='text']:state(checked):not(:disabled)) {
+    --_text-color: var(--md-sys-color-primary);
+  }
 
-:host(:disabled),
-:host([variant='outlined']:state(checked):disabled) {
-  --_background-color: var(--md-sys-color-on-surface);
-  --_background-opacity: 10%;
-  --_text-color: var(--md-sys-color-on-surface);
-  --_text-opacity: 38%;
-  --_outline-color: var(--md-sys-color-on-surface);
-  --_outline-opacity: 10%;
-  pointer-events: none;
-}
+  :host([width='narrow']) {
+    width: var(--_wn);
+  }
+  :host([width='wide']) {
+    width: var(--_ww);
+  }
 
-::slotted(*) {
-  block-size: 1em;
-  fill: currentcolor;
-  font-size: var(--_icon-size);
-  inline-size: 1em;
+  ::slotted(*) {
+    block-size: 1em;
+    fill: currentcolor;
+    font-size: var(--_icon-size);
+    inline-size: 1em;
+  }
 }
