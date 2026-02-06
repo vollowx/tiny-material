@@ -57,7 +57,7 @@ export interface PopoverControllerConfig {
     open: () => number;
     close: () => number;
   };
-  onClickOutside?: () => void;
+  onClickAway?: () => void;
 }
 
 export class PopoverController implements ReactiveController {
@@ -88,7 +88,7 @@ export class PopoverController implements ReactiveController {
   }
   hostDisconnected() {
     this.cleanupAutoUpdate?.();
-    window.removeEventListener('pointerup', this.#handleClickOutside);
+    window.removeEventListener('pointerup', this.#handleClickAway);
   }
 
   // Different from those in the Tooltip, these timers are used to manage the
@@ -103,7 +103,7 @@ export class PopoverController implements ReactiveController {
     // TODO: Use a global event listener to manage this more effectively
     setTimeout(() => {
       if (this._open) {
-        window.addEventListener('pointerup', this.#handleClickOutside);
+        window.addEventListener('pointerup', this.#handleClickAway);
       }
     }, 0);
 
@@ -150,7 +150,7 @@ export class PopoverController implements ReactiveController {
     if (!this._open) return;
     this._open = false;
 
-    window.removeEventListener('pointerup', this.#handleClickOutside);
+    window.removeEventListener('pointerup', this.#handleClickAway);
     clearTimeout(this.#openTimer);
     clearTimeout(this.#closeTimer);
 
@@ -213,7 +213,7 @@ export class PopoverController implements ReactiveController {
     });
   }
 
-  #handleClickOutside = (event: MouseEvent) => {
+  #handleClickAway = (event: MouseEvent) => {
     const trigger = this.config.trigger();
     const popover = this.config.popover();
     const path = event.composedPath();
@@ -221,6 +221,6 @@ export class PopoverController implements ReactiveController {
     if (trigger && path.includes(trigger)) return;
     if (popover && path.includes(popover)) return;
 
-    this.config.onClickOutside?.();
+    this.config.onClickAway?.();
   };
 }

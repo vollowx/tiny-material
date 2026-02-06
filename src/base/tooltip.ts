@@ -47,7 +47,7 @@ export class Tooltip extends Base {
       open: () => this._durations.show,
       close: () => this._durations.hide,
     },
-    onClickOutside: () => {
+    onClickAway: () => {
       this.visible = false;
     },
   });

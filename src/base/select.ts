@@ -36,7 +36,7 @@ export class Select extends Base {
 
   @property({ type: Boolean }) quick = false;
   @property({ type: Boolean, reflect: true }) required = false;
-  @property({ type: Boolean, reflect: true }) error = false;
+  @property({ type: Boolean }) error = false;
   @property({ reflect: true }) align: import('@floating-ui/dom').Placement =
     'bottom-start';
   @property({ type: String, reflect: true })
@@ -108,7 +108,7 @@ export class Select extends Base {
       open: () => (this.quick ? 0 : this._durations.show),
       close: () => (this.quick ? 0 : this._durations.hide),
     },
-    onClickOutside: () => {
+    onClickAway: () => {
       this.open = false;
     },
   });

@@ -1,9 +1,12 @@
 import { LitElement, html } from 'lit';
 import { property, query, queryAssignedElements } from 'lit/decorators.js';
 
+import type { Placement, Strategy } from '@floating-ui/dom';
+
 import { setFocusVisible } from '../core/focus-visible.js';
 import { Attachable } from './mixins/attachable.js';
-import { internals, InternalsAttached } from './mixins/internals-attached.js';
+import { InternalsAttached } from './mixins/internals-attached.js';
+import { FocusDelegated } from './mixins/focus-delegated.js';
 import { PopoverController } from './controllers/popover-controller.js';
 import { ListController } from './controllers/list-controller.js';
 import { MenuItem } from './menu-item.js';
@@ -14,7 +17,7 @@ import {
   scrollItemIntoView,
 } from './menu-utils.js';
 
-const Base = InternalsAttached(Attachable(LitElement));
+const Base = FocusDelegated(InternalsAttached(Attachable(LitElement)));
 
 /**
  * @csspart menu
@@ -25,25 +28,24 @@ const Base = InternalsAttached(Attachable(LitElement));
  * @fires {Event} close - Fired when the menu is closed.
  */
 export class Menu extends Base {
-  static override shadowRootOptions: ShadowRootInit = {
-    ...LitElement.shadowRootOptions,
-    delegatesFocus: true,
-  };
-
   readonly _possibleItemTags: string[] = [];
   readonly _durations = { show: 0, hide: 0 };
   readonly _scrollPadding: number = 0;
 
-  @property({ type: Boolean, reflect: true }) open: boolean = false;
-  @property({ type: Boolean, reflect: true }) quick: boolean = false;
-  @property({ reflect: true }) align: import('@floating-ui/dom').Placement =
-    'bottom-start';
-  @property({ type: String, reflect: true })
-  alignStrategy: import('@floating-ui/dom').Strategy = 'absolute';
-  @property({ type: Number, reflect: true }) offset = 0;
-  @property({ type: Boolean }) keepOpenBlur: boolean = false;
-  @property({ type: Boolean }) keepOpenClickItem: boolean = false;
-  @property({ type: Boolean }) keepOpenClickOutside: boolean = false;
+  @property() type: string = 'menu';
+  @property({ type: Boolean }) open = false;
+  @property({ type: Boolean }) quick = false;
+  @property({ type: Number }) offset = 0;
+  @property({ reflect: true })
+  align: Placement = 'bottom-start';
+  @property({ type: String, reflect: true, attribute: 'align-strategy' })
+  alignStrategy: Strategy = 'absolute';
+  @property({ type: Boolean, attribute: 'keep-open-blur' })
+  keepOpenBlur: boolean = false;
+  @property({ type: Boolean, attribute: 'keep-open-click-item' })
+  keepOpenClickItem: boolean = false;
+  @property({ type: Boolean, attribute: 'keep-open-click-away' })
+  keepOpenClickAway: boolean = false;
 
   @query('[part="menu"]') $menu!: HTMLElement;
   @queryAssignedElements({ flatten: true }) slotItems!: Array<
@@ -64,8 +66,8 @@ export class Menu extends Base {
       open: () => (this.quick ? 0 : this._durations.show),
       close: () => (this.quick ? 0 : this._durations.hide),
     },
-    onClickOutside: () => {
-      if (!this.keepOpenClickOutside) this.open = false;
+    onClickAway: () => {
+      if (!this.keepOpenClickAway) this.open = false;
     },
   });
 
@@ -88,7 +90,7 @@ export class Menu extends Base {
   override render() {
     return html`<div
       part="menu"
-      role="menu"
+      role="${this.type}"
       tabindex="0"
       @keydown=${this.#handleKeyDown.bind(this)}
       @focusout=${this.#handleFocusOut.bind(this)}
@@ -257,11 +259,9 @@ export class Menu extends Base {
       })
     );
 
-    if (this.keepOpenClickItem) return;
-    this.open = false;
+    if (!this.keepOpenClickItem) this.open = false;
   }
 
-  // Exposed functions
   show() {
     this.open = true;
   }
