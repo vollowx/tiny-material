@@ -7,17 +7,14 @@
 import { LitElement, html, PropertyValues, nothing } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { FormAssociated } from './mixins/form-associated.js';
-import { InternalsAttached, internals } from './mixins/internals-attached.js';
 
-const Base = FormAssociated(InternalsAttached(LitElement));
+import { InternalsAttached, internals } from './mixins/internals-attached.js';
+import { FocusDelegated } from './mixins/focus-delegated.js';
+import { FormAssociated } from './mixins/form-associated.js';
+
+const Base = FormAssociated(FocusDelegated(InternalsAttached(LitElement)));
 
 export class Slider extends Base {
-  static override shadowRootOptions: ShadowRootInit = {
-    ...LitElement.shadowRootOptions,
-    delegatesFocus: true,
-  };
-
   @property({ type: Number }) min = 0;
   @property({ type: Number }) max = 100;
   @property({ type: Number }) value?: number;

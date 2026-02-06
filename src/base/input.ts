@@ -8,17 +8,13 @@ import { LitElement, html, nothing, PropertyValues } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { live } from 'lit/directives/live.js';
 
-import { FormAssociated } from './mixins/form-associated.js';
 import { InternalsAttached, internals } from './mixins/internals-attached.js';
+import { FocusDelegated } from './mixins/focus-delegated.js';
+import { FormAssociated } from './mixins/form-associated.js';
 
-const Base = FormAssociated(InternalsAttached(LitElement));
+const Base = FormAssociated(FocusDelegated(InternalsAttached(LitElement)));
 
 export class Input extends Base {
-  static override shadowRootOptions: ShadowRootInit = {
-    ...LitElement.shadowRootOptions,
-    delegatesFocus: true,
-  };
-
   @property({ reflect: true }) type = 'text';
   @property() value = '';
   @property({ reflect: true }) placeholder = '';

@@ -1,10 +1,12 @@
 import { LitElement, isServer, html, PropertyValues } from 'lit';
 import { property, query, queryAssignedElements } from 'lit/decorators.js';
 
-import { FormAssociated } from './mixins/form-associated.js';
 import { InternalsAttached } from './mixins/internals-attached.js';
+import { FocusDelegated } from './mixins/focus-delegated.js';
+import { FormAssociated } from './mixins/form-associated.js';
 import { PopoverController } from './controllers/popover-controller.js';
 import { ListController } from './controllers/list-controller.js';
+
 import { Option } from './option.js';
 import {
   MenuActions,
@@ -12,11 +14,10 @@ import {
   getUpdatedIndex,
   scrollItemIntoView,
 } from './menu-utils.js';
-import { ListItem } from './list-item.js';
 
 const VALUE = Symbol('value');
 
-const Base = FormAssociated(InternalsAttached(LitElement));
+const Base = FormAssociated(FocusDelegated(InternalsAttached(LitElement)));
 
 /**
  * @csspart field
@@ -29,11 +30,6 @@ const Base = FormAssociated(InternalsAttached(LitElement));
  * TODO: Consider handle mouseover to focus items.
  */
 export class Select extends Base {
-  static override shadowRootOptions: ShadowRootInit = {
-    ...LitElement.shadowRootOptions,
-    delegatesFocus: true,
-  };
-
   readonly _possibleItemTags: string[] = [];
   readonly _durations = { show: 0, hide: 0 };
   readonly _scrollPadding: number = 0;
@@ -91,7 +87,7 @@ export class Select extends Base {
   @query('[part="field"]') $field!: HTMLElement;
   @query('[part="menu"]') $menu!: HTMLElement;
   @queryAssignedElements({ flatten: true }) slotItems!: Array<
-    ListItem | HTMLElement
+    Option | HTMLElement
   >;
 
   private lastUserSetValue: string | null = null;
@@ -135,16 +131,13 @@ export class Select extends Base {
     wrapNavigation: () => false,
   });
 
-  override connectedCallback() {
-    super.connectedCallback();
-    this.addEventListener('focusout', this.#handleFocusOut);
-    this.addEventListener('click', this.#handleOptionClick);
-  }
+  constructor() {
+    super();
 
-  override disconnectedCallback() {
-    super.disconnectedCallback();
-    this.removeEventListener('focusout', this.#handleFocusOut);
-    this.removeEventListener('click', this.#handleOptionClick);
+    if (!isServer) {
+      this.addEventListener('focusout', this.#handleFocusOut);
+      this.addEventListener('click', this.#handleOptionClick);
+    }
   }
 
   protected override async firstUpdated(changed: PropertyValues<Select>) {
