@@ -666,6 +666,26 @@
               },
               "readonly": true,
               "default": "{ show: 300, hide: 200 }"
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "type": {
+                "text": "'standard' | 'vibrant'"
+              },
+              "default": "'standard'",
+              "attribute": "color",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "color",
+              "type": {
+                "text": "'standard' | 'vibrant'"
+              },
+              "default": "'standard'",
+              "fieldName": "color"
             }
           ],
           "superclass": {
