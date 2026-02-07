@@ -37,11 +37,6 @@
   vertical-align: middle;
 }
 
-:host([lowered]) {
-  --_background-color: var(--md-sys-color-surface-container-low);
-  box-shadow: var(--md-sys-elevation-shadow-1);
-}
-
 :host([size='medium']) {
   --_size: 80px;
   --_border-radius: 20px;
