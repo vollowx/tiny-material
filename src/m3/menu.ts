@@ -20,7 +20,7 @@ export class M3Menu extends Menu {
     'md-menu-item-radio',
     'md-option',
   ];
-  override readonly _durations = { show: 300, hide: 200 };
+  override readonly _durations = { show: 300, hide: 150 };
   // FIXME: Might cause a long list to scroll more than expected
   // override readonly _scrollPadding = 4;
 
